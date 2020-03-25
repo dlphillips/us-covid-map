@@ -3,7 +3,7 @@
 
 <head>
   <meta charset=utf-8 />
-  <title>Covid-19 in the US</title>
+  <title>COVID-19 in the US</title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
 
@@ -56,13 +56,15 @@
       zoom: 4
     })
 
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-      attribution: 'Tiles &copy Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
-    }).addTo(map);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(map)
 
-    const minValue = 1;
+    const minValue = 1
 
-    const minRadius = 8;
+    const minRadius = 2
 
     L.geoJson(data, {
       onEachFeature: function (feature, layer) {
@@ -93,17 +95,22 @@
       pointToLayer: function (feature, ll) {
         return L.circleMarker(ll, {
           color: '#ff7900',
-          opacity: 1,
+          opacity: .9,
           weight: 2,
           fillColor: '#ff7900',
-          fillOpacity: .6,
+          fillOpacity: .8,
           radius: calcRadius(feature.properties.Confirmed)
         })
       }
     }).addTo(map)
 
+    L.tileLayer('https://maps.heigit.org/openmapsurfer/tiles/adminb/webmercator/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> | Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map)
+
     function calcRadius(val) {
-      return 1.0083 * Math.pow(val / minValue, .25) * minRadius
+      return 1.0083 * Math.pow(val / minValue, .35) * minRadius
     }
 
   </script>
