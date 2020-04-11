@@ -11,7 +11,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png'
 
 const minValue = 1
 
-const minRadius = 2
+const minRadius = 1
 
 L.geoJson(data, {
   onEachFeature: function (feature, layer) {
