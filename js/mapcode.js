@@ -15,8 +15,8 @@ const minRadius = 1
 
 L.geoJson(data, {
   onEachFeature: function (feature, layer) {
-    if (feature.properties && feature.properties.Combined_k) {
-      const popup = "<h3>" + feature.properties.Combined_k + "</h3>" + "<table>" +
+    if (feature.properties && feature.properties.Combined_Key) {
+      const popup = "<h3>" + feature.properties.Combined_Key + "</h3>" + "<table>" +
         "<tbody>" +
         "<tr>" +
         "<td> Cases </td>" +
@@ -31,7 +31,7 @@ L.geoJson(data, {
         "<td> " + feature.properties.Recovered + " </td>" +
         "</tr>" +
         "<tr>" +
-        "<td><h3>" + "<a href='https://www.google.com/search?q=" + feature.properties.Combined_k + " covid-19' target='_blank'" + "> Latest News </a>" + " </h3></td>" +
+        "<td><h3>" + "<a href='https://www.google.com/search?q=" + feature.properties.Combined_Key + " covid-19' target='_blank'" + "> Latest News </a>" + " </h3></td>" +
         "</tr>" +
         "</tbody>" +
         "</table>"
